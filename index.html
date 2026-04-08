@@ -11,7 +11,7 @@
 <body>
 
   <!-- IMAGEM BANNER -->
-  <img src="img/Colarinho Lounge Bar.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
+  <img src="/img/Colarinho Lounge Bar.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
 
   <!-- TOPO -->
   <h1 class="titulo">CARDÁPIO</h1>
@@ -286,57 +286,17 @@
           <span class="pix-chave-texto">04010003030</span>
           <button class="btn-copiar" onclick="copiarChave()">📋 Copiar</button>
         </div>
-        <!-- ETAPA 4 → 5 -->
-        <button class="btn-ja-paguei" onclick="abrirComprovante()">✅ Após o pagamento clique aqui</button>
+
+        <!-- Aviso do comprovante -->
+        <div class="aviso-comprovante">
+          📎 <strong>Atenção:</strong> após clicar no botão abaixo e enviar seu pedido pelo WhatsApp, <strong>não se esqueça de anexar o print do comprovante do Pix</strong> na mesma mensagem — sem ele seu pedido não será confirmado!
+        </div>
+
+        <button class="btn-ja-paguei" onclick="enviarPedido()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
       </div>
     </div>
   </div>
   <div id="overlay-pix" class="overlay-pix" onclick="fecharPix()"></div>
-
-  <!-- ETAPA 5: INSTRUÇÕES + BOTÃO ENVIAR WHATSAPP -->
-  <div id="modal-comprovante" class="modal-comprovante">
-    <div class="modal-conteudo">
-      <div class="modal-topo">
-        <h2>📲 Enviar Pedido</h2>
-        <span class="fechar-modal" onclick="fecharComprovante()">×</span>
-      </div>
-      <div class="comprovante-corpo">
-
-        <p class="comprovante-instrucao">Seu pagamento foi registrado! Siga os passos abaixo para confirmar seu pedido:</p>
-
-        <div class="instrucoes-box">
-          <p class="instrucoes-titulo">📋 Como enviar pelo WhatsApp:</p>
-          <div class="instrucao-passo">
-            <span class="passo-numero">1</span>
-            <span class="passo-texto">Clique em <strong>"Enviar pedido pelo WhatsApp"</strong> abaixo</span>
-          </div>
-          <div class="instrucao-passo">
-            <span class="passo-numero">2</span>
-            <span class="passo-texto">O WhatsApp vai abrir com seu pedido já escrito automaticamente</span>
-          </div>
-          <div class="instrucao-passo">
-            <span class="passo-numero">3</span>
-            <span class="passo-texto">Toque no ícone 📎 <strong>(anexar)</strong> antes de enviar</span>
-          </div>
-          <div class="instrucao-passo">
-            <span class="passo-numero">4</span>
-            <span class="passo-texto">Selecione a <strong>foto do comprovante</strong> do Pix na sua galeria</span>
-          </div>
-          <div class="instrucao-passo">
-            <span class="passo-numero">5</span>
-            <span class="passo-texto">Envie a mensagem com o comprovante anexado ✅</span>
-          </div>
-          <div class="instrução-passo">
-            <strong class="passo-texto"><strong>Seu pedido será realizado após anexar o comprovante de pagamento pelo WhatsApp</strong></span>
-          </div>
-        </div>
-
-        <button class="btn-enviar-pedido" onclick="enviarPedido()">📲 Enviar pedido pelo WhatsApp</button>
-
-      </div>
-    </div>
-  </div>
-  <div id="overlay-comprovante" class="overlay-comprovante" onclick="fecharComprovante()"></div>
 
   <!-- ETAPA 9: MODAL DE CONFIRMAÇÃO FINAL (comprovante do cliente) -->
   <div id="modal-confirmacao-final" class="modal-nota">
@@ -391,13 +351,13 @@
   <div id="popup" class="popup">
     <div class="popup-content">
       <span class="fechar" onclick="fecharPopup()">×</span>
-      <img src="img/popday.jpg" alt="Promoção do fim de semana">
+      <img src="/img/popday.jpg" alt="Promoção do fim de semana">
     </div>
   </div>
 
   <!-- Biblioteca para gerar QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="js/java.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 
 </html>

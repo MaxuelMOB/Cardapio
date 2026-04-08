@@ -1210,3 +1210,21 @@ select.input-campo option {
   line-height: 1.4;
 }
 .passo-texto strong { color: #fff; }
+
+/* ==============================================
+   AVISO DO COMPROVANTE — TELA DO PIX
+================================================ */
+.aviso-comprovante {
+  background: #2a1a1a;
+  border: 1px solid #c0392b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 14px 20px 4px;
+  font-size: 0.85rem;
+  color: #ddd;
+  line-height: 1.6;
+  text-align: center;
+}
+.aviso-comprovante strong {
+  color: #fff;
+}

@@ -342,12 +342,12 @@ function enviarPedido() {
     `📎 *Comprovante anexado abaixo.*`;
 
   // ⚠️ Substitua SEUNUMERO pelo número real (ex: 5551999999999)
-  const numeroWhatsApp = '5551982239582';
+  const numeroWhatsApp = 'SEUNUMERO';
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(urlWhatsApp, '_blank');
 
-  fecharComprovante();
+  fecharPix();
   abrirConfirmacaoFinal(numeroPedidoFormatado, data, hora, total, itens);
 }
 
