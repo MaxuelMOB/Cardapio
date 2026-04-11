@@ -19,15 +19,15 @@
 
   <!-- MENU DE CATEGORIAS — FIXO NO TOPO COM SCROLL HORIZONTAL -->
   <div class="menu-categorias">
-    <button class="btn-categoria ativo" onclick="mostrarCategoria('drinks', this)">🍹 Drinks</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('cervejas', this)">🍺 Cervejas</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('combos-cervejas', this)">🍻 Combos Cervejas</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('doses', this)">🥃 Doses</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('combos-casa', this)">🔥 Combos da Casa</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('sem-alcool', this)">🥤 Sem Álcool</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('burgers', this)">🍔 Burgers</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('pasteis', this)">🥟 Pastéis</button>
-    <button class="btn-categoria" onclick="mostrarCategoria('porcoes', this)">🍟 Porções</button>
+    <button class="btn-categoria ativo" onclick="trocarCategoria('drinks', this)">🍹 Drinks</button>
+    <button class="btn-categoria" onclick="trocarCategoria('cervejas', this)">🍺 Cervejas</button>
+    <button class="btn-categoria" onclick="trocarCategoria('combos-cervejas', this)">🍻 Combos Cervejas</button>
+    <button class="btn-categoria" onclick="trocarCategoria('doses', this)">🥃 Doses</button>
+    <button class="btn-categoria" onclick="trocarCategoria('combos-casa', this)">🔥 Combos da Casa</button>
+    <button class="btn-categoria" onclick="trocarCategoria('sem-alcool', this)">🥤 Sem Álcool</button>
+    <button class="btn-categoria" onclick="trocarCategoria('burgers', this)">🍔 Burgers</button>
+    <button class="btn-categoria" onclick="trocarCategoria('pasteis', this)">🥟 Pastéis</button>
+    <button class="btn-categoria" onclick="trocarCategoria('porcoes', this)">🍟 Porções</button>
   </div>
 
   <div class="container">
@@ -179,7 +179,7 @@
       <span id="carrinho-qtd">0 itens</span>
       <span id="carrinho-total">R$ 0,00</span>
     </div>
-    <button class="btn-ver-carrinho" onclick="abrirCarrinho()">🛒 Ver pedido</button>
+    <button class="btn-ver-carrinho" onclick="abrirTelaDoCarrinho()">🛒 Ver pedido</button>
   </div>
 
   <!-- MODAL DO CARRINHO -->
@@ -187,7 +187,7 @@
     <div class="modal-conteudo">
       <div class="modal-topo">
         <h2>🛒 Seu Pedido</h2>
-        <span class="fechar-modal" onclick="fecharCarrinho()">×</span>
+        <span class="fechar-modal" onclick="fecharTelaDoCarrinho()">×</span>
       </div>
       <div id="lista-carrinho"></div>
       <div class="modal-rodape">
@@ -196,18 +196,18 @@
           <span id="total-final">R$ 0,00</span>
         </div>
         <!-- ETAPA 1: Botão que inicia o fluxo de pagamento -->
-        <button class="btn-finalizar" onclick="iniciarFluxo()">💳 Finalizar e Pagar no Pix</button>
+        <button class="btn-finalizar" onclick="comecarPedido()">💳 Finalizar e Pagar no Pix</button>
       </div>
     </div>
   </div>
-  <div id="overlay-carrinho" class="overlay-carrinho" onclick="fecharCarrinho()"></div>
+  <div id="overlay-carrinho" class="overlay-carrinho" onclick="fecharTelaDoCarrinho()"></div>
 
   <!-- ETAPA 2: MODAL DE IDENTIFICAÇÃO (Nome + Mesa) -->
   <div id="modal-identificacao" class="modal-identificacao">
     <div class="modal-conteudo">
       <div class="modal-topo">
         <h2>👤 Identificação</h2>
-        <span class="fechar-modal" onclick="fecharIdentificacao()">×</span>
+        <span class="fechar-modal" onclick="fecharTelaDeDados()">×</span>
       </div>
       <div class="identificacao-corpo">
         <p class="identificacao-instrucao">Antes de pagar, precisamos de algumas informações:</p>
@@ -263,18 +263,18 @@
 
         <div id="identificacao-erro" class="identificacao-erro"></div>
 
-        <button class="btn-avancar" onclick="avancarParaPix()">Avançar para pagamento →</button>
+        <button class="btn-avancar" onclick="confirmarDadosEIrParaPix()">Avançar para pagamento →</button>
       </div>
     </div>
   </div>
-  <div id="overlay-identificacao" class="overlay-identificacao" onclick="fecharIdentificacao()"></div>
+  <div id="overlay-identificacao" class="overlay-identificacao" onclick="fecharTelaDeDados()"></div>
 
   <!-- ETAPA 4: MODAL DO PIX -->
   <div id="modal-pix" class="modal-pix">
     <div class="modal-conteudo">
       <div class="modal-topo">
         <h2>💳 Pagar com Pix</h2>
-        <span class="fechar-modal" onclick="fecharPix()">×</span>
+        <span class="fechar-modal" onclick="fecharTelaDePagamentoPix()">×</span>
       </div>
       <div class="pix-corpo">
         <p class="pix-instrucao">Escaneie o QR Code e pague <strong id="pix-valor">R$ 0,00</strong> no seu banco:</p>
@@ -283,8 +283,8 @@
         </div>
         <p class="pix-ou">— ou copie a chave Pix —</p>
         <div class="pix-chave-box">
-          <span class="pix-chave-texto">04010003030</span>
-          <button class="btn-copiar" onclick="copiarChave()">📋 Copiar</button>
+          <span class="pix-chave-texto">+55 (51) 99844-3038</span>
+          <button class="btn-copiar" onclick="copiarChavePix()">📋 Copiar</button>
         </div>
 
         <!-- Aviso do comprovante -->
@@ -292,11 +292,11 @@
           📎 <strong>Atenção:</strong> após clicar no botão abaixo e enviar seu pedido pelo WhatsApp, <strong>não se esqueça de anexar o print do comprovante do Pix</strong> na mesma mensagem — sem ele seu pedido não será confirmado!
         </div>
 
-        <button class="btn-ja-paguei" onclick="enviarPedido()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
+        <button class="btn-ja-paguei" onclick="enviarPedidoNoWhatsApp()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
       </div>
     </div>
   </div>
-  <div id="overlay-pix" class="overlay-pix" onclick="fecharPix()"></div>
+  <div id="overlay-pix" class="overlay-pix" onclick="fecharTelaDePagamentoPix()"></div>
 
   <!-- ETAPA 9: MODAL DE CONFIRMAÇÃO FINAL (comprovante do cliente) -->
   <div id="modal-confirmacao-final" class="modal-nota">
@@ -342,15 +342,15 @@
       <div class="nota-linha-tracejada"></div>
       <p class="nota-obrigado">Obrigado pela preferência! 🎶</p>
 
-      <button class="btn-fechar-nota" onclick="fecharConfirmacaoFinal()">Fechar</button>
+      <button class="btn-fechar-nota" onclick="fecharTelaDeConfirmacao()">Fechar</button>
     </div>
   </div>
-  <div id="overlay-confirmacao-final" class="overlay-nota" onclick="fecharConfirmacaoFinal()"></div>
+  <div id="overlay-confirmacao-final" class="overlay-nota" onclick="fecharTelaDeConfirmacao()"></div>
 
   <!-- POPUP PROMOÇÃO -->
   <div id="popup" class="popup">
     <div class="popup-content">
-      <span class="fechar" onclick="fecharPopup()">×</span>
+      <span class="fechar" onclick="fecharAnuncio()">×</span>
       <img src="/img/popday.jpg" alt="Promoção do fim de semana">
     </div>
   </div>

@@ -32,7 +32,7 @@ let numeroPedido = parseInt(localStorage.getItem('numeroPedido') || '0');
    CARRINHO DE PEDIDOS
 ================================================ */
 
-function atualizarBarra() {
+function atualizarBarraDoCarrinho() {
   const itens = Object.values(carrinho);
   const totalQtd = itens.reduce((soma, item) => soma + item.qtd, 0);
   const totalValor = itens.reduce((soma, item) => soma + item.preco * item.qtd, 0);
@@ -51,11 +51,11 @@ function atualizarBarra() {
 }
 
 /* ----------------------------------------------
-   atualizarFritas()
+   verificarSeFritasEstaLiberada()
    Libera ou bloqueia o adicional de fritas
    dependendo se há burger no carrinho.
 ---------------------------------------------- */
-function atualizarFritas() {
+function verificarSeFritasEstaLiberada() {
   const burgers = [
     'Burguer 120g',
     'Burguer Duplo 120g',
@@ -77,7 +77,7 @@ function atualizarFritas() {
         .forEach(el => el.textContent = '0');
       document.querySelectorAll('.item[data-nome="Adicional de fritas"] .btn-menos')
         .forEach(btn => btn.disabled = true);
-      atualizarBarra();
+      atualizarBarraDoCarrinho();
     }
   } else {
     botoesMaisFritas.forEach(btn => btn.disabled = false);
@@ -85,10 +85,10 @@ function atualizarFritas() {
 }
 
 /* ----------------------------------------------
-   alterarQtd(nome, preco, delta)
+   adicionarOuRemoverItem(nome, preco, delta)
    Adiciona (+1) ou remove (-1) um item do carrinho.
 ---------------------------------------------- */
-function alterarQtd(nome, preco, delta) {
+function adicionarOuRemoverItem(nome, preco, delta) {
   if (!carrinho[nome]) {
     carrinho[nome] = { preco: parseFloat(preco), qtd: 0 };
   }
@@ -106,19 +106,19 @@ function alterarQtd(nome, preco, delta) {
     if (btnMenos) btnMenos.disabled = qtd === 0;
   });
 
-  atualizarFritas();
-  atualizarBarra();
+  verificarSeFritasEstaLiberada();
+  atualizarBarraDoCarrinho();
 
   if (document.getElementById('modal-carrinho').classList.contains('ativo')) {
-    renderizarModal();
+    mostrarItensDoCarrinho();
   }
 }
 
 /* ----------------------------------------------
-   renderizarModal()
+   mostrarItensDoCarrinho()
    Gera a lista de itens no modal do carrinho.
 ---------------------------------------------- */
-function renderizarModal() {
+function mostrarItensDoCarrinho() {
   const lista = document.getElementById('lista-carrinho');
   const itens = Object.entries(carrinho);
 
@@ -141,9 +141,9 @@ function renderizarModal() {
           </div>
         </div>
         <div class="item-carrinho-controles">
-          <button class="btn-carrinho-menos" onclick="alterarQtd('${nome}', ${preco}, -1)">−</button>
+          <button class="btn-carrinho-menos" onclick="adicionarOuRemoverItem('${nome}', ${preco}, -1)">−</button>
           <span class="carrinho-item-qtd">${qtd}</span>
-          <button class="btn-carrinho-mais" onclick="alterarQtd('${nome}', ${preco}, +1)">+</button>
+          <button class="btn-carrinho-mais" onclick="adicionarOuRemoverItem('${nome}', ${preco}, +1)">+</button>
         </div>
       </div>
     `;
@@ -153,13 +153,13 @@ function renderizarModal() {
     'R$ ' + total.toFixed(2).replace('.', ',');
 }
 
-function abrirCarrinho() {
-  renderizarModal();
+function abrirTelaDoCarrinho() {
+  mostrarItensDoCarrinho();
   document.getElementById('modal-carrinho').classList.add('ativo');
   document.getElementById('overlay-carrinho').classList.add('ativo');
 }
 
-function fecharCarrinho() {
+function fecharTelaDoCarrinho() {
   document.getElementById('modal-carrinho').classList.remove('ativo');
   document.getElementById('overlay-carrinho').classList.remove('ativo');
 }
@@ -170,8 +170,8 @@ function fecharCarrinho() {
    Cliente clica em "Finalizar e Pagar no Pix"
    → abre o modal de identificação
 ================================================ */
-function iniciarFluxo() {
-  fecharCarrinho();
+function comecarPedido() {
+  fecharTelaDoCarrinho();
   document.getElementById('input-nome-cliente').value = '';
   document.getElementById('input-mesa').value = '';
   document.getElementById('identificacao-erro').textContent = '';
@@ -179,7 +179,7 @@ function iniciarFluxo() {
   document.getElementById('overlay-identificacao').classList.add('ativo');
 }
 
-function fecharIdentificacao() {
+function fecharTelaDeDados() {
   document.getElementById('modal-identificacao').classList.remove('ativo');
   document.getElementById('overlay-identificacao').classList.remove('ativo');
 }
@@ -190,7 +190,7 @@ function fecharIdentificacao() {
    Cliente preenche nome e mesa → salva na variável
    dadosCliente → abre o modal do Pix
 ================================================ */
-function avancarParaPix() {
+function confirmarDadosEIrParaPix() {
   const nome = document.getElementById('input-nome-cliente').value.trim();
   const mesa = document.getElementById('input-mesa').value.trim();
   const erro = document.getElementById('identificacao-erro');
@@ -212,8 +212,8 @@ function avancarParaPix() {
   dadosCliente.nome = nome;
   dadosCliente.mesa = mesa;
 
-  fecharIdentificacao();
-  abrirPix(); // ETAPA 4
+  fecharTelaDeDados();
+  abrirTelaDepagamentoPix(); // ETAPA 4
 }
 
 
@@ -221,7 +221,7 @@ function avancarParaPix() {
    ETAPA 4 — MODAL DO PIX
    Gera o QR Code com o valor total do pedido.
 ================================================ */
-function abrirPix() {
+function abrirTelaDepagamentoPix() {
   const total = Object.values(carrinho).reduce((s, i) => s + i.preco * i.qtd, 0);
 
   document.getElementById('pix-valor').textContent =
@@ -230,7 +230,7 @@ function abrirPix() {
   const box = document.querySelector('.pix-qrcode-box');
   box.innerHTML = '<div id="qrcode-gerado"></div>';
 
-  const payload = gerarPayloadPix('04010003030', 'Colarinho Louge Bar', 'Novo Hamburgo', total);
+  const payload = gerarCodigoQrcodePix('+5551998443038', 'Colarinho Louge Bar', 'Novo Hamburgo', total);
 
   new QRCode(document.getElementById('qrcode-gerado'), {
     text: payload,
@@ -243,13 +243,13 @@ function abrirPix() {
   document.getElementById('overlay-pix').classList.add('ativo');
 }
 
-function fecharPix() {
+function fecharTelaDePagamentoPix() {
   document.getElementById('modal-pix').classList.remove('ativo');
   document.getElementById('overlay-pix').classList.remove('ativo');
 }
 
-function copiarChave() {
-  navigator.clipboard.writeText('04010003030').then(() => {
+function copiarChavePix() {
+  navigator.clipboard.writeText('+5551998443038').then(() => {
     const btn = document.querySelector('.btn-copiar');
     btn.textContent = '✅ Copiado!';
     setTimeout(() => btn.textContent = '📋 Copiar', 2000);
@@ -259,7 +259,7 @@ function copiarChave() {
 /* ----------------------------------------------
    gerarPayloadPix — formato oficial Banco Central
 ---------------------------------------------- */
-function gerarPayloadPix(chave, nome, cidade, valor) {
+function gerarCodigoQrcodePix(chave, nome, cidade, valor) {
   function campo(id, v) {
     const t = String(v.length).padStart(2, '0');
     return `${id}${t}${v}`;
@@ -290,13 +290,13 @@ function gerarPayloadPix(chave, nome, cidade, valor) {
    ETAPA 5 — MODAL DE ANEXAR COMPROVANTE
    Cliente anexa o print do comprovante do Pix.
 ================================================ */
-function abrirComprovante() {
-  fecharPix();
+function abrirTelaDeInstrucoes() {
+  fecharTelaDePagamentoPix();
   document.getElementById('modal-comprovante').classList.add('ativo');
   document.getElementById('overlay-comprovante').classList.add('ativo');
 }
 
-function fecharComprovante() {
+function fecharTelaDeInstrucoes() {
   document.getElementById('modal-comprovante').classList.remove('ativo');
   document.getElementById('overlay-comprovante').classList.remove('ativo');
 }
@@ -305,7 +305,7 @@ function fecharComprovante() {
 /* ==============================================
    ETAPA 6 e 7 — ENVIAR PEDIDO PELO WHATSAPP
 ================================================ */
-function enviarPedido() {
+function enviarPedidoNoWhatsApp() {
   // ETAPA 8 — Incrementa o número do pedido (1 a 50, depois reinicia)
   numeroPedido = (numeroPedido % 50) + 1;
   localStorage.setItem('numeroPedido', numeroPedido);
@@ -342,13 +342,13 @@ function enviarPedido() {
     `📎 *Comprovante anexado abaixo.*`;
 
   // ⚠️ Substitua SEUNUMERO pelo número real (ex: 5551999999999)
-  const numeroWhatsApp = 'SEUNUMERO';
+  const numeroWhatsApp = '51996830150';
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(urlWhatsApp, '_blank');
 
-  fecharPix();
-  abrirConfirmacaoFinal(numeroPedidoFormatado, data, hora, total, itens);
+  fecharTelaDePagamentoPix();
+  mostrarComprovanteDoCliente(numeroPedidoFormatado, data, hora, total, itens);
 }
 
 
@@ -357,7 +357,7 @@ function enviarPedido() {
    Mostra o comprovante com todos os dados
    do pedido e mensagem de aguardar na mesa.
 ================================================ */
-function abrirConfirmacaoFinal(numeroPedidoFormatado, data, hora, total, itens) {
+function mostrarComprovanteDoCliente(numeroPedidoFormatado, data, hora, total, itens) {
   // Preenche os dados do comprovante
   document.getElementById('conf-numero-pedido').textContent = `#${numeroPedidoFormatado}`;
   document.getElementById('conf-nome-cliente').textContent = dadosCliente.nome;
@@ -384,8 +384,7 @@ function abrirConfirmacaoFinal(numeroPedidoFormatado, data, hora, total, itens) 
   document.getElementById('overlay-confirmacao-final').classList.add('ativo');
 }
 
-function fecharConfirmacaoFinal() {
-  document.getElementById('modal-confirmacao-final').classList.remove('ativo');
+function fecharTelaDeConfirmacao() {
   document.getElementById('overlay-confirmacao-final').classList.remove('ativo');
 
   // Zera o carrinho e reseta tudo para novo pedido
@@ -398,25 +397,24 @@ function fecharConfirmacaoFinal() {
   // Limpa os dados do cliente para o próximo pedido
   dadosCliente.nome = '';
   dadosCliente.mesa = '';
-  arquivoComprovante = null;
 
-  atualizarBarra();
+  atualizarBarraDoCarrinho();
 }
 
 
 /* ==============================================
    BOTÕES + / − EM CADA ITEM DO CARDÁPIO
 ================================================ */
-function inicializarBotoes() {
+function criarBotoesDeQuantidade() {
   document.querySelectorAll('.item[data-nome]').forEach(itemEl => {
     const nome = itemEl.dataset.nome;
     const preco = itemEl.dataset.preco;
     const controles = document.createElement('div');
     controles.className = 'item-controles';
     controles.innerHTML = `
-      <button class="btn-menos" onclick="alterarQtd('${nome}', ${preco}, -1)" disabled>−</button>
+      <button class="btn-menos" onclick="adicionarOuRemoverItem('${nome}', ${preco}, -1)" disabled>−</button>
       <span class="item-qtd">0</span>
-      <button class="btn-mais" onclick="alterarQtd('${nome}', ${preco}, +1)">+</button>
+      <button class="btn-mais" onclick="adicionarOuRemoverItem('${nome}', ${preco}, +1)">+</button>
     `;
     itemEl.appendChild(controles);
   });
@@ -430,7 +428,7 @@ function inicializarBotoes() {
 /* ==============================================
    NAVEGAÇÃO POR CATEGORIAS
 ================================================ */
-function mostrarCategoria(categoria, botaoClicado) {
+function trocarCategoria(categoria, botaoClicado) {
   document.querySelectorAll('.card').forEach(card => {
     card.classList.remove('show');
     setTimeout(() => {
@@ -456,7 +454,7 @@ function mostrarCategoria(categoria, botaoClicado) {
    INICIALIZAÇÃO DA PÁGINA
 ================================================ */
 window.addEventListener('load', () => {
-  inicializarBotoes();
+  criarBotoesDeQuantidade();
 
   document.querySelectorAll('.card').forEach(card => {
     card.style.display = 'none';
@@ -481,10 +479,10 @@ window.addEventListener('load', () => {
   setTimeout(() => popup.classList.add('ativo'), 1000);
 });
 
-function fecharPopup() {
+function fecharAnuncio() {
   popup.classList.remove('ativo');
 }
 
 popup.addEventListener('click', function(e) {
-  if (e.target === this) fecharPopup();
+  if (e.target === this) fecharAnuncio();
 });
