@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colarinho Lounge Bar</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- IMAGEM BANNER -->
+  <img src="/img/Colarinho Lounge Bar.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
+
+  <!-- TOPO -->
+  <h1 class="titulo">CARDÁPIO</h1>
+  <p class="subtitulo">🍹 Música • Alegria • Diversão</p>
+
+  <!-- MENU DE CATEGORIAS — FIXO NO TOPO COM SCROLL HORIZONTAL -->
+  <div class="menu-categorias">
+    <button class="btn-categoria ativo" onclick="mostrarCategoria('drinks', this)">🍹 Drinks</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('cervejas', this)">🍺 Cervejas</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('combos-cervejas', this)">🍻 Combos Cervejas</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('doses', this)">🥃 Doses</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('combos-casa', this)">🔥 Combos da Casa</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('sem-alcool', this)">🥤 Sem Álcool</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('burgers', this)">🍔 Burgers</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('pasteis', this)">🥟 Pastéis</button>
+    <button class="btn-categoria" onclick="mostrarCategoria('porcoes', this)">🍟 Porções</button>
+  </div>
+
+  <div class="container">
+
+    <!-- DRINKS -->
+    <div class="card show" data-categoria="drinks">
+      <h2>🍹 Drinks</h2>
+      <div class="item" data-nome="Caipira Vodka" data-preco="25.00"><span>Caipira Vodka</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Caipira Cachaça" data-preco="25.00"><span>Caipira Cachaça</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Caipira Corona" data-preco="29.00"><span>Caipira Corona</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Vodka Tônica" data-preco="25.00"><span>Vodka Tônica</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Gin Tônica" data-preco="25.00"><span>Gin Tônica</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Gin Tropical" data-preco="25.00"><span>Gin Tropical</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Gin Açaí c/ Coco" data-preco="22.00"><span>Gin Açaí c/ Coco</span><span class="preco-item">R$ 22,00</span></div>
+      <div class="item" data-nome="MaracuGin" data-preco="28.00"><span>MaracuGin</span><span class="preco-item">R$ 28,00</span></div>
+      <div class="item" data-nome="Aperol" data-preco="29.00"><span>Aperol</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Mojito" data-preco="29.00"><span>Mojito</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Piña Colada" data-preco="29.00"><span>Piña Colada</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Sex On The Beach" data-preco="29.00"><span>Sex On The Beach</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Moscow Mule" data-preco="29.00"><span>Moscow Mule</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Big Jacuzzi" data-preco="29.00"><span>Big Jacuzzi</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Jack and Coke" data-preco="29.00"><span>Jack and Coke</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="JaggerBomb" data-preco="22.00"><span>JaggerBomb</span><span class="preco-item">R$ 22,00</span></div>
+      <div class="item" data-nome="Margarita" data-preco="35.00"><span>Margarita</span><span class="preco-item">R$ 35,00</span></div>
+      <div class="item" data-nome="Negroni" data-preco="35.00"><span>Negroni</span><span class="preco-item">R$ 35,00</span></div>
+      <div class="item" data-nome="Lagoa Azul" data-preco="29.00"><span>Lagoa Azul</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Campari Orange" data-preco="29.00"><span>Campari Orange</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item" data-nome="Tequila Sunrise" data-preco="35.00"><span>Tequila Sunrise</span><span class="preco-item">R$ 35,00</span></div>
+    </div>
+
+    <!-- CERVEJAS -->
+    <div class="card" data-categoria="cervejas">
+      <h2>🍺 Cervejas & Especiais</h2>
+      <div class="item" data-nome="Chopp 400ml" data-preco="14.00"><span>Chopp 400ml</span><span class="preco-item">R$ 14,00</span></div>
+      <div class="item" data-nome="Amstel" data-preco="15.00"><span>Amstel</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item" data-nome="Corona" data-preco="18.00"><span>Corona</span><span class="preco-item">R$ 18,00</span></div>
+      <div class="item" data-nome="Heineken" data-preco="17.00"><span>Heineken</span><span class="preco-item">R$ 17,00</span></div>
+      <div class="item" data-nome="Skol Beats" data-preco="15.00"><span>Skol Beats</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item" data-nome="Smirnoff Ice" data-preco="15.00"><span>Smirnoff Ice</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item" data-nome="Torre de Chopp" data-preco="99.00"><span>Torre de Chopp</span><span class="preco-item">R$ 99,00</span></div>
+      <div class="item" data-nome="Vinho Concha Y Toro" data-preco="70.00"><span>Vinho Concha Y Toro</span><span class="preco-item">R$ 70,00</span></div>
+      <div class="item" data-nome="Espumante Salton" data-preco="79.00"><span>Espumante Salton</span><span class="preco-item">R$ 79,00</span></div>
+      <div class="item" data-nome="Espumante Garibaldi" data-preco="79.00"><span>Espumante Garibaldi</span><span class="preco-item">R$ 79,00</span></div>
+    </div>
+
+    <!-- COMBOS CERVEJAS -->
+    <div class="card" data-categoria="combos-cervejas">
+      <h2>🍻 Combos Cervejas</h2>
+      <div class="item" data-nome="Balde Corona (5)" data-preco="85.00"><span>Balde Corona (5)</span><span class="preco-item">R$ 85,00</span></div>
+      <div class="item" data-nome="Balde Heineken (5)" data-preco="80.00"><span>Balde Heineken (5)</span><span class="preco-item">R$ 80,00</span></div>
+      <div class="item" data-nome="Balde Amstel (5)" data-preco="75.00"><span>Balde Amstel (5)</span><span class="preco-item">R$ 75,00</span></div>
+      <div class="item" data-nome="Balde Skol Beats (5)" data-preco="85.00"><span>Balde Skol Beats (5)</span><span class="preco-item">R$ 85,00</span></div>
+    </div>
+
+    <!-- DOSES -->
+    <div class="card" data-categoria="doses">
+      <h2>🥃 Doses</h2>
+      <div class="item" data-nome="Orloff" data-preco="12.00"><span>Orloff</span><span class="preco-item">R$ 12,00</span></div>
+      <div class="item" data-nome="Rocks" data-preco="12.00"><span>Rock's</span><span class="preco-item">R$ 12,00</span></div>
+      <div class="item" data-nome="Licor 43" data-preco="25.00"><span>Licor 43</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Jagermeister" data-preco="20.00"><span>Jagermeister</span><span class="preco-item">R$ 20,00</span></div>
+      <div class="item" data-nome="Red Label" data-preco="20.00"><span>Red Label</span><span class="preco-item">R$ 20,00</span></div>
+      <div class="item" data-nome="Jack Daniels" data-preco="25.00"><span>Jack Daniel's</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item" data-nome="Tequila" data-preco="15.00"><span>Tequila</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item" data-nome="Absolut" data-preco="15.00"><span>Absolut</span><span class="preco-item">R$ 15,00</span></div>
+    </div>
+
+    <!-- COMBOS DA CASA -->
+    <div class="card" data-categoria="combos-casa">
+      <h2>🔥 Combos da Casa</h2>
+      <div class="item" data-nome="Absolut + Energetico" data-preco="350.00"><span>Absolut + Energético</span><span class="preco-item">R$ 350,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+      <div class="item" data-nome="Orloff + Energetico" data-preco="300.00"><span>Orloff + Energético</span><span class="preco-item">R$ 300,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+      <div class="item" data-nome="Rocks + Energetico" data-preco="300.00"><span>Rock's + Energético</span><span class="preco-item">R$ 300,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+      <div class="item" data-nome="Tanqueray + Energetico" data-preco="350.00"><span>Tanqueray + Energético</span><span class="preco-item">R$ 350,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+      <div class="item" data-nome="Jack Daniels + Energetico" data-preco="450.00"><span>Jack Daniel's + Energético</span><span class="preco-item">R$ 450,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+      <div class="item" data-nome="Red Label + Energetico" data-preco="370.00"><span>Red Label + Energético</span><span class="preco-item">R$ 370,00</span></div>
+      <div class="item-descricao">Baly 2L ou 5 Red Bull</div>
+    </div>
+
+    <!-- SEM ÁLCOOL -->
+    <div class="card" data-categoria="sem-alcool">
+      <h2>🥤 Sem Álcool</h2>
+      <div class="item" data-nome="Água" data-preco="5.00"><span>Água</span><span class="preco-item">R$ 5,00</span></div>
+      <div class="item" data-nome="Refrigerante" data-preco="8.00"><span>Refrigerante</span><span class="preco-item">R$ 8,00</span></div>
+      <div class="item" data-nome="Tônica" data-preco="8.00"><span>Tônica</span><span class="preco-item">R$ 8,00</span></div>
+      <div class="item" data-nome="Suco Natural" data-preco="8.00"><span>Suco Natural</span><span class="preco-item">R$ 8,00</span></div>
+      <div class="item" data-nome="Red Bull" data-preco="15.00"><span>Red Bull</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item" data-nome="Baly 2L" data-preco="50.00"><span>Baly 2L</span><span class="preco-item">R$ 50,00</span></div>
+    </div>
+
+    <!-- BURGERS -->
+    <div class="card" data-categoria="burgers">
+      <h2>🍔 Burgers</h2>
+      <div class="item" data-nome="Burguer 120g" data-preco="23.00"><span>Burguer 120g</span><span class="preco-item">R$ 23,00</span></div>
+      <div class="item-descricao">1 burguer de costela ou frango, queijo cheddar, queijo muçarela e maionese verde.</div>
+      <div class="item" data-nome="Burguer Duplo 120g" data-preco="29.00"><span>Burguer Duplo 120g</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item-descricao">2 burguers de costela ou frango, queijo cheddar, queijo muçarela e maionese verde.</div>
+      <div class="item" data-nome="Burguer Duplo Especial Colarinho" data-preco="39.00"><span>Burguer Duplo 120g Especial Colarinho</span><span class="preco-item">R$ 39,00</span></div>
+      <div class="item-descricao">2 burguers de costela ou frango, queijo cheddar, queijo muçarela, alface, tomate, cebola refogada, bacon, anel de cebola e maionese verde.</div>
+      <div class="item" data-nome="Adicional de fritas" data-preco="5.00"><span>Adicional de fritas</span><span class="preco-item">+ R$ 5,00</span></div>
+      <div class="item" data-nome="Entreveiro M" data-preco="79.00"><span>Entreveiro M</span><span class="preco-item">R$ 79,00</span></div>
+      <div class="item-descricao">Serve 2 a 3 pessoas</div>
+      <div class="item" data-nome="Entreveiro G" data-preco="99.00"><span>Entreveiro G</span><span class="preco-item">R$ 99,00</span></div>
+      <div class="item-descricao">Serve 4 a 5 pessoas</div>
+      <div class="item" data-nome="Entreveiro no Pão" data-preco="25.00"><span>Entreveiro no Pão</span><span class="preco-item">R$ 25,00</span></div>
+      <div class="item-descricao">Mix de carnes</div>
+      <div class="item" data-nome="Pizza Xadrez" data-preco="39.00"><span>Pizza Xadrez</span><span class="preco-item">R$ 39,00</span></div>
+    </div>
+
+    <!-- PASTÉIS -->
+    <div class="card" data-categoria="pasteis">
+      <h2>🥟 Pastéis</h2>
+      <div class="item" data-nome="Pastel de Frango" data-preco="19.90"><span>Frango</span><span class="preco-item">R$ 19,90</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Pastel de Queijo" data-preco="19.90"><span>Queijo</span><span class="preco-item">R$ 19,90</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Pastel de Carne" data-preco="19.90"><span>Carne</span><span class="preco-item">R$ 19,90</span></div>
+      <div class="item-descricao">250g</div>
+    </div>
+
+    <!-- PORÇÕES -->
+    <div class="card" data-categoria="porcoes">
+      <h2>🍟 Porções</h2>
+      <div class="item" data-nome="Batata Frita" data-preco="15.00"><span>Batata Frita</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Batata Rústica" data-preco="19.00"><span>Batata Rústica</span><span class="preco-item">R$ 19,00</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Adicional bacon + cheddar" data-preco="5.00"><span>Adicional bacon + cheddar</span><span class="preco-item">+ R$ 5,00</span></div>
+      <div class="item" data-nome="Polenta" data-preco="15.00"><span>Polenta</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Bolinha de Queijo" data-preco="17.00"><span>Bolinha de Queijo</span><span class="preco-item">R$ 17,00</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Anel de Cebola" data-preco="15.00"><span>Anel de Cebola</span><span class="preco-item">R$ 15,00</span></div>
+      <div class="item-descricao">250g</div>
+      <div class="item" data-nome="Violinha" data-preco="29.00"><span>Violinha</span><span class="preco-item">R$ 29,00</span></div>
+      <div class="item-descricao">250g</div>
+    </div>
+
+  </div>
+
+  <!-- BARRA DO CARRINHO — aparece quando há itens -->
+  <div id="barra-carrinho" class="barra-carrinho">
+    <div class="carrinho-info">
+      <span id="carrinho-qtd">0 itens</span>
+      <span id="carrinho-total">R$ 0,00</span>
+    </div>
+    <button class="btn-ver-carrinho" onclick="abrirCarrinho()">🛒 Ver pedido</button>
+  </div>
+
+  <!-- MODAL DO CARRINHO -->
+  <div id="modal-carrinho" class="modal-carrinho">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <h2>🛒 Seu Pedido</h2>
+        <span class="fechar-modal" onclick="fecharCarrinho()">×</span>
+      </div>
+      <div id="lista-carrinho"></div>
+      <div class="modal-rodape">
+        <div class="total-final">
+          <span>Total</span>
+          <span id="total-final">R$ 0,00</span>
+        </div>
+        <!-- ETAPA 1: Botão que inicia o fluxo de pagamento -->
+        <button class="btn-finalizar" onclick="iniciarFluxo()">💳 Finalizar e Pagar no Pix</button>
+      </div>
+    </div>
+  </div>
+  <div id="overlay-carrinho" class="overlay-carrinho" onclick="fecharCarrinho()"></div>
+
+  <!-- ETAPA 2: MODAL DE IDENTIFICAÇÃO (Nome + Mesa) -->
+  <div id="modal-identificacao" class="modal-identificacao">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <h2>👤 Identificação</h2>
+        <span class="fechar-modal" onclick="fecharIdentificacao()">×</span>
+      </div>
+      <div class="identificacao-corpo">
+        <p class="identificacao-instrucao">Antes de pagar, precisamos de algumas informações:</p>
+
+        <label class="input-label">Seu nome completo</label>
+        <input type="text" id="input-nome-cliente" class="input-campo"
+          placeholder="Ex: João Silva" maxlength="50">
+
+        <label class="input-label">Número da sua mesa</label>
+        <select id="input-mesa" class="input-campo">
+          <option value="">Selecione sua mesa...</option>
+          <option value="1">Mesa 1</option>
+          <option value="2">Mesa 2</option>
+          <option value="3">Mesa 3</option>
+          <option value="4">Mesa 4</option>
+          <option value="5">Mesa 5</option>
+          <option value="6">Mesa 6</option>
+          <option value="7">Mesa 7</option>
+          <option value="8">Mesa 8</option>
+          <option value="9">Mesa 9</option>
+          <option value="10">Mesa 10</option>
+          <option value="11">Mesa 11</option>
+          <option value="12">Mesa 12</option>
+          <option value="13">Mesa 13</option>
+          <option value="14">Mesa 14</option>
+          <option value="15">Mesa 15</option>
+          <option value="16">Mesa 16</option>
+          <option value="17">Mesa 17</option>
+          <option value="18">Mesa 18</option>
+          <option value="19">Mesa 19</option>
+          <option value="20">Mesa 20</option>
+          <option value="21">Mesa 21</option>
+          <option value="22">Mesa 22</option>
+          <option value="23">Mesa 23</option>
+          <option value="24">Mesa 24</option>
+          <option value="25">Mesa 25</option>
+          <option value="26">Mesa 26</option>
+          <option value="27">Mesa 27</option>
+          <option value="28">Mesa 28</option>
+          <option value="29">Mesa 29</option>
+          <option value="30">Mesa 30</option>
+          <option value="31">Mesa 31</option>
+          <option value="32">Mesa 32</option>
+          <option value="33">Mesa 33</option>
+          <option value="34">Mesa 34</option>
+          <option value="35">Mesa 35</option>
+          <option value="36">Mesa 36</option>
+          <option value="37">Mesa 37</option>
+          <option value="38">Mesa 38</option>
+          <option value="39">Mesa 39</option>
+          <option value="40">Mesa 40</option>
+        </select>
+
+        <div id="identificacao-erro" class="identificacao-erro"></div>
+
+        <button class="btn-avancar" onclick="avancarParaPix()">Avançar para pagamento →</button>
+      </div>
+    </div>
+  </div>
+  <div id="overlay-identificacao" class="overlay-identificacao" onclick="fecharIdentificacao()"></div>
+
+  <!-- ETAPA 4: MODAL DO PIX -->
+  <div id="modal-pix" class="modal-pix">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <h2>💳 Pagar com Pix</h2>
+        <span class="fechar-modal" onclick="fecharPix()">×</span>
+      </div>
+      <div class="pix-corpo">
+        <p class="pix-instrucao">Escaneie o QR Code e pague <strong id="pix-valor">R$ 0,00</strong> no seu banco:</p>
+        <div class="pix-qrcode-box">
+          <div id="qrcode-gerado"></div>
+        </div>
+        <p class="pix-ou">— ou copie a chave Pix —</p>
+        <div class="pix-chave-box">
+          <span class="pix-chave-texto">04010003030</span>
+          <button class="btn-copiar" onclick="copiarChave()">📋 Copiar</button>
+        </div>
+
+        <!-- Aviso do comprovante -->
+        <div class="aviso-comprovante">
+          📎 <strong>Atenção:</strong> após clicar no botão abaixo e enviar seu pedido pelo WhatsApp, <strong>não se esqueça de anexar o print do comprovante do Pix</strong> na mesma mensagem — sem ele seu pedido não será confirmado!
+        </div>
+
+        <button class="btn-ja-paguei" onclick="enviarPedido()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
+      </div>
+    </div>
+  </div>
+  <div id="overlay-pix" class="overlay-pix" onclick="fecharPix()"></div>
+
+  <!-- ETAPA 9: MODAL DE CONFIRMAÇÃO FINAL (comprovante do cliente) -->
+  <div id="modal-confirmacao-final" class="modal-nota">
+    <div class="nota-conteudo">
+      <div class="nota-cabecalho">
+        <div class="nota-logo">✅</div>
+        <h2 class="nota-estabelecimento">Pedido Enviado!</h2>
+        <p class="nota-subtitulo">Sua solicitação foi recebida com sucesso</p>
+      </div>
+
+      <div class="nota-linha-tracejada"></div>
+
+      <div class="confirmacao-pedido-info">
+        <div class="confirmacao-numero-pedido">
+          Nº do Pedido: <strong id="conf-numero-pedido">#001</strong>
+        </div>
+        <div class="confirmacao-cliente">
+          Cliente: <strong id="conf-nome-cliente"></strong>
+        </div>
+        <div class="confirmacao-mesa">
+          Mesa: <strong id="conf-mesa"></strong>
+        </div>
+        <div class="confirmacao-data">
+          <strong id="conf-data-hora"></strong>
+        </div>
+      </div>
+
+      <div class="nota-linha-tracejada"></div>
+      <div id="conf-itens" class="nota-itens"></div>
+      <div class="nota-linha-tracejada"></div>
+
+      <div class="nota-total-linha">
+        <span>TOTAL</span>
+        <span id="conf-total">R$ 0,00</span>
+      </div>
+
+      <div class="nota-linha-tracejada"></div>
+
+      <div class="nota-alerta" style="background:#e8f5e9; border-color:#4caf50; color:#1b5e20;">
+        🍺 Aguarde! Seu pedido será levado até sua mesa em breve!
+      </div>
+
+      <div class="nota-linha-tracejada"></div>
+      <p class="nota-obrigado">Obrigado pela preferência! 🎶</p>
+
+      <button class="btn-fechar-nota" onclick="fecharConfirmacaoFinal()">Fechar</button>
+    </div>
+  </div>
+  <div id="overlay-confirmacao-final" class="overlay-nota" onclick="fecharConfirmacaoFinal()"></div>
+
+  <!-- POPUP PROMOÇÃO -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="fechar" onclick="fecharPopup()">×</span>
+      <img src="/img/popday.jpg" alt="Promoção do fim de semana">
+    </div>
+  </div>
+
+  <!-- Biblioteca para gerar QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

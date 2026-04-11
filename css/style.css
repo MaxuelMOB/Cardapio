@@ -1,0 +1,1230 @@
+/* ==============================================
+   ARQUIVO: style.css
+   DESCRIÇÃO: Estilo visual do Cardápio Digital
+   do Colarinho Lounge Bar.
+   Todas as cores, tamanhos, animações e layout
+   da página são definidos aqui.
+================================================ */
+
+
+/* ==============================================
+   RESET & BASE
+   Configurações globais que afetam TODA a página.
+================================================ */
+
+* {
+  /* Faz com que padding e borda sejam incluídos
+     no tamanho total do elemento. Evita que
+     elementos "vazem" para fora do layout. */
+  box-sizing: border-box;
+
+  /* Remove o brilho azul/cinza que aparece
+     quando o usuário toca em elementos no celular
+     (Android especialmente). Deixa mais bonito. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /* Remove espaço padrão das bordas da tela */
+  margin: 0;
+
+  /* Espaço interno nas laterais e embaixo */
+  padding: 15px;
+
+  /* Zera o padding do topo pois a barra de
+     categorias já cuida desse espaço */
+  padding-top: 0;
+
+  /* Cor de fundo escura — tema dark do app */
+  background: #1a1a1a;
+
+  /* Cor padrão do texto — branco */
+  color: #fff;
+
+  /* Fonte principal. Segoe UI é moderna e
+     legível em telas de celular */
+  font-family: 'Segoe UI', sans-serif;
+
+  /* Tamanho base da fonte — 16px é o ideal
+     para leitura confortável no celular */
+  font-size: 16px;
+}
+
+
+/* ==============================================
+   BANNER (imagem do topo)
+   A foto principal do bar que aparece no topo.
+================================================ */
+
+.imagem-banner {
+  /* Garante que a imagem não flutue para o lado */
+  display: block;
+
+  /* Ocupa toda a largura disponível */
+  width: 100%;
+
+  /* Mas nunca passa de 500px (limite do layout) */
+  max-width: 500px;
+
+  /* Centraliza horizontalmente na tela */
+  margin: 10px auto;
+
+  /* Cantos arredondados — visual moderno */
+  border-radius: 12px;
+
+  /* Sombra dourada suave ao redor da imagem */
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+
+  /* Animação suave ao tocar na imagem */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efeito ao tocar/clicar na imagem no celular */
+.imagem-banner:active {
+  /* Encolhe levemente dando sensação de pressão */
+  transform: scale(0.97);
+  /* Sombra escurece ao pressionar */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+
+/* ==============================================
+   TOPO — Título e Subtítulo
+================================================ */
+
+.titulo {
+  text-align: center;
+  color: #c0392b; /* Dourado — cor principal do bar */
+  margin: 10px auto 4px;
+  max-width: 500px;
+  font-size: 1.8rem;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #c0392b;
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 0.95rem;
+}
+
+
+/* ==============================================
+   BARRA DE CATEGORIAS
+   Faixa de botões que fica grudada no topo
+   da tela enquanto o usuário rola a página.
+   Tem scroll horizontal para caber todos os botões.
+================================================ */
+
+.menu-categorias {
+  /* sticky = fica fixo no topo ao rolar a página */
+  position: sticky;
+  top: 0;
+
+  /* Fica na frente de outros elementos */
+  z-index: 100;
+
+  /* Mesma cor do fundo para não "vazar" conteúdo */
+  background: #1a1a1a;
+
+  /* Coloca os botões em linha horizontal */
+  display: flex;
+  flex-wrap: nowrap; /* Não quebra para a linha de baixo */
+  overflow-x: auto;  /* Permite rolar para o lado */
+
+  gap: 8px;          /* Espaço entre os botões */
+  padding: 10px 15px;
+
+  /* Sangra até a borda da tela (compensa o padding do body) */
+  margin: 0 -15px;
+
+  /* Esconde a barra de scroll horizontal — fica invisível
+     mas ainda funciona ao deslizar o dedo */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  /* Linha separadora embaixo da barra */
+  border-bottom: 1px solid #333;
+}
+
+/* Esconde barra de scroll no Chrome/Safari */
+.menu-categorias::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ==============================================
+   BOTÕES DE CATEGORIA
+   Cada botão representa uma seção do cardápio
+   (Drinks, Cervejas, Burgers, etc.)
+================================================ */
+
+.btn-categoria {
+  background: #2a2a2a;   /* Fundo escuro padrão */
+  color: #ccc;           /* Texto cinza claro */
+  border: 1px solid #444;
+  border-radius: 20px;   /* Formato de pílula arredondada */
+  padding: 10px 18px;    /* Espaço interno generoso para o dedo */
+  font-size: 0.88rem;
+  cursor: pointer;
+  white-space: nowrap;   /* Impede o texto do botão de quebrar linha */
+  flex-shrink: 0;        /* Impede o botão de encolher no scroll horizontal */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  /* 44px é o tamanho mínimo recomendado pela Apple e Google
+     para área de toque no celular — evita erros de toque */
+  min-height: 44px;
+}
+
+/* Efeito de pressão ao tocar no celular */
+.btn-categoria:active {
+  transform: scale(0.94);
+}
+
+/* Estilo do botão SELECIONADO (categoria ativa) */
+.btn-categoria.ativo {
+  background: #c0392b;   /* Fundo dourado */
+  color: #000;           /* Texto preto para contraste */
+  border-color: #c0392b;
+  font-weight: bold;
+}
+
+
+/* ==============================================
+   CONTAINER PRINCIPAL
+   Caixa que envolve todos os cards do cardápio.
+================================================ */
+
+.container {
+  max-width: 500px; /* Limita a largura para ficar bom no celular */
+  margin: auto;     /* Centraliza na tela */
+  padding-top: 8px;
+
+  /* Espaço extra embaixo para o conteúdo não
+     ficar escondido atrás da barra do carrinho */
+  padding-bottom: 90px;
+}
+
+
+/* ==============================================
+   CARDS DE CATEGORIA
+   Cada seção do cardápio (Drinks, Cervejas, etc.)
+   é um card com fundo escuro arredondado.
+================================================ */
+
+.card {
+  background: #2a2a2a;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 12px 0;
+
+  /* Começa INVISÍVEL e deslocado para baixo */
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+
+  /* Animação suave ao aparecer */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Quando o card está visível (classe 'show' adicionada pelo JS) */
+.card.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0); /* Volta para posição normal */
+}
+
+/* Título de cada seção (ex: "🍹 Drinks") */
+.card h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: #c0392b; /* Dourado */
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+}
+
+
+/* ==============================================
+   ITENS DO CARDÁPIO
+   Cada linha com nome do produto e preço.
+================================================ */
+
+.item {
+  display: flex;
+  justify-content: space-between; /* Nome à esquerda, preço à direita */
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #3a3a3a; /* Linha separadora entre itens */
+  gap: 8px;
+}
+
+/* Nome do produto (primeira coluna) */
+.item span:first-child {
+  flex: 1; /* Ocupa o espaço disponível */
+  font-size: 0.97rem;
+}
+
+/* Preço do produto */
+.preco-item {
+  color: #c0392b;    /* Dourado para destacar o preço */
+  font-weight: bold;
+  white-space: nowrap; /* Impede o preço de quebrar linha */
+  font-size: 0.95rem;
+}
+
+/* Texto de descrição abaixo de alguns itens
+   (ex: ingredientes dos burgers, "Serve 2 a 3 pessoas") */
+.item-descricao {
+  font-size: 0.82rem;
+  color: #999;       /* Cinza mais claro — secundário */
+  padding: 4px 0 12px;
+  border-bottom: 1px solid #3a3a3a;
+  line-height: 1.5;  /* Espaço entre linhas para legibilidade */
+}
+
+
+/* ==============================================
+   CONTROLES DE QUANTIDADE ( − 0 + )
+   Botões de mais e menos ao lado de cada item.
+================================================ */
+
+/* Container que agrupa os botões − número + */
+.item-controles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  flex-shrink: 0; /* Não encolhe — sempre visível */
+}
+
+/* Estilo base compartilhado pelos botões − e + */
+.btn-menos, .btn-mais {
+  background: #c0392b; /* Dourado (sobrescrito embaixo para o −) */
+  color: #000;
+  border: none;
+  border-radius: 50%; /* Formato de círculo */
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+/* Botão − tem cor cinza escuro (diferente do +) */
+.btn-menos {
+  background: #444;
+  color: #fff;
+}
+
+/* Animação de pressão */
+.btn-menos:active, .btn-mais:active {
+  transform: scale(0.88);
+}
+
+/* Botão − fica apagado quando quantidade é zero
+   (não faz sentido diminuir abaixo de zero) */
+.btn-menos:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Número de quantidade entre os botões */
+.item-qtd {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+}
+
+
+/* ==============================================
+   BARRA DO CARRINHO (FIXA EMBAIXO)
+   Aparece na parte inferior da tela quando
+   o cliente adiciona algum item ao pedido.
+   Mostra quantidade de itens e valor total.
+================================================ */
+
+.barra-carrinho {
+  position: fixed;    /* Fica fixo na tela, não rola com o conteúdo */
+  bottom: -100px;     /* Começa ESCONDIDA abaixo da tela */
+  left: 0;
+  right: 0;
+  background: #c0392b; /* Fundo dourado — chama atenção */
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  z-index: 200;        /* Fica na frente de quase tudo */
+
+  /* Animação suave ao entrar e sair da tela */
+  transition: bottom 0.35s ease;
+
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 16px 16px 0 0; /* Arredondado só no topo */
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4); /* Sombra para cima */
+}
+
+/* Quando há itens no carrinho, a barra sobe para aparecer */
+.barra-carrinho.visivel {
+  bottom: 0;
+}
+
+/* Bloco de texto com "X itens" e "R$ 00,00" */
+.carrinho-info {
+  display: flex;
+  flex-direction: column; /* Empilha os textos verticalmente */
+  gap: 2px;
+}
+
+/* "X itens" — texto menor e transparente */
+.carrinho-info span:first-child {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+/* "R$ 00,00" — valor em destaque */
+.carrinho-info span:last-child {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Botão "Ver pedido" na barra do carrinho */
+.btn-ver-carrinho {
+  background: #000;
+  color: #c0392b;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-ver-carrinho:active {
+  transform: scale(0.95);
+}
+
+
+/* ==============================================
+   OVERLAY DO CARRINHO
+   Fundo escuro semitransparente que aparece
+   atrás do modal quando ele está aberto.
+   Clicar nele fecha o modal.
+================================================ */
+
+.overlay-carrinho {
+  position: fixed;
+  inset: 0; /* Cobre toda a tela (top/right/bottom/left = 0) */
+  background: rgba(0,0,0,0.7); /* Preto 70% de opacidade */
+  z-index: 300;
+  opacity: 0;            /* Começa invisível */
+  pointer-events: none;  /* Não captura cliques quando invisível */
+  transition: opacity 0.3s;
+}
+
+/* Quando o carrinho está aberto */
+.overlay-carrinho.ativo {
+  opacity: 1;
+  pointer-events: auto; /* Passa a capturar cliques para fechar */
+}
+
+
+/* ==============================================
+   MODAL DO CARRINHO
+   Painel que desliza de baixo para cima mostrando
+   todos os itens adicionados ao pedido.
+================================================ */
+
+.modal-carrinho {
+  position: fixed;
+  bottom: -100%; /* Começa escondido abaixo da tela */
+  left: 0;
+  right: 0;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #1e1e1e;
+  border-radius: 20px 20px 0 0; /* Arredondado no topo */
+  z-index: 400; /* Na frente do overlay */
+  transition: bottom 0.4s ease; /* Animação de deslizar */
+  max-height: 80vh; /* Ocupa no máximo 80% da altura da tela */
+  display: flex;
+  flex-direction: column; /* Empilha cabeçalho, lista e rodapé */
+}
+
+/* Quando o modal está aberto — sobe para a tela */
+.modal-carrinho.ativo {
+  bottom: 0;
+}
+
+/* Cabeçalho do modal com título e botão fechar */
+.modal-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px 10px;
+  border-bottom: 1px solid #333;
+}
+
+.modal-topo h2 {
+  margin: 0;
+  color: #c0392b;
+  font-size: 1.1rem;
+}
+
+/* Botão × para fechar o modal */
+.fechar-modal {
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  line-height: 1;
+}
+
+/* Área de lista dos itens — tem scroll se for longa */
+#lista-carrinho {
+  overflow-y: auto; /* Scroll vertical se houver muitos itens */
+  flex: 1;          /* Ocupa o espaço disponível entre cabeçalho e rodapé */
+  padding: 10px 20px;
+}
+
+/* Cada item dentro do modal do carrinho */
+.item-carrinho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #2e2e2e;
+  gap: 10px;
+}
+
+/* Bloco com nome e preço do item no modal */
+.item-carrinho-info {
+  flex: 1;
+}
+
+.item-carrinho-nome {
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+/* Linha de preço: "R$ 25,00 × 2 = R$ 50,00" */
+.item-carrinho-preco {
+  font-size: 0.82rem;
+  color: #c0392b;
+  margin-top: 2px;
+}
+
+/* Controles − número + dentro do modal */
+.item-carrinho-controles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botões dentro do modal do carrinho */
+.btn-carrinho-menos, .btn-carrinho-mais {
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão + dourado no modal */
+.btn-carrinho-mais {
+  background: #c0392b;
+  color: #000;
+}
+
+/* Número de quantidade no modal */
+.carrinho-item-qtd {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Rodapé do modal com o total geral */
+.modal-rodape {
+  padding: 16px 20px;
+  border-top: 1px solid #333;
+  background: #1e1e1e;
+}
+
+/* Linha "Total  R$ 00,00" */
+.total-final {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Valor total em dourado */
+.total-final span:last-child {
+  color: #c0392b;
+}
+
+/* Mensagem quando o carrinho está vazio */
+.carrinho-vazio {
+  text-align: center;
+  color: #666;
+  padding: 30px 0;
+  font-size: 0.95rem;
+}
+
+
+/* ==============================================
+   BOTÃO FLUTUANTE DO WHATSAPP
+   Ícone verde fixo no canto inferior direito
+   para contato direto com o bar.
+================================================ */
+
+.whatsapp {
+  position: fixed;
+  bottom: 80px; /* Fica acima da barra do carrinho */
+  right: 20px;
+  background: #25d366; /* Verde do WhatsApp */
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.15s;
+  z-index: 150;
+}
+.whatsapp:active {
+  transform: scale(0.92);
+}
+
+
+/* ==============================================
+   POPUP DE PROMOÇÃO
+   Janela que aparece automaticamente 1 segundo
+   após o cliente abrir o cardápio, mostrando
+   a promoção do dia/semana.
+================================================ */
+
+/* Fundo escuro que cobre toda a tela */
+.popup {
+  position: fixed;
+  inset: 0; /* Cobre tudo: top/right/bottom/left = 0 */
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Na frente de absolutamente tudo */
+  opacity: 0;           /* Começa invisível */
+  pointer-events: none; /* Não bloqueia cliques quando invisível */
+  transition: opacity 0.3s ease;
+}
+
+/* Quando o popup está ativo — aparece com fade in */
+.popup.ativo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Container da imagem de promoção */
+.popup-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Imagem da promoção — se adapta à tela sem cortar */
+.popup-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Garante que a imagem não seja cortada */
+  border-radius: 12px;
+}
+
+/* Botão × para fechar o popup */
+.fechar {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #fff;
+  color: #000;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 34px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+
+/* ==============================================
+   BOTÃO FINALIZAR PEDIDO
+   Aparece no rodapé do modal do carrinho.
+================================================ */
+.btn-finalizar {
+  width: 100%;
+  margin-top: 12px;
+  background: #c0392b;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-finalizar:active { transform: scale(0.97); }
+
+
+/* ==============================================
+   MODAL DO PIX
+================================================ */
+.overlay-pix {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay-pix.ativo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-pix {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #1e1e1e;
+  border-radius: 20px 20px 0 0;
+  z-index: 600;
+  transition: bottom 0.4s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-pix.ativo { bottom: 0; }
+
+/* Instrução acima do QR Code */
+.pix-instrucao {
+  text-align: center;
+  color: #ccc;
+  font-size: 0.95rem;
+  margin: 16px 0 12px;
+  padding: 0 10px;
+}
+.pix-instrucao strong { color: #c0392b; font-size: 1.1rem; }
+
+/* Caixa do QR Code — fundo branco para o QR aparecer */
+.pix-qrcode-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 0 20px;
+}
+.pix-qrcode-box canvas,
+.pix-qrcode-box img {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+/* Separador */
+.pix-ou {
+  text-align: center;
+  color: #666;
+  font-size: 0.82rem;
+  margin: 16px 0 8px;
+}
+
+/* Caixa da chave Pix */
+.pix-chave-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 0 20px;
+  gap: 10px;
+}
+.pix-chave-texto {
+  font-size: 0.95rem;
+  color: #fff;
+  word-break: break-all;
+  flex: 1;
+}
+.btn-copiar {
+  background: #333;
+  color: #c0392b;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-copiar:active { background: #444; }
+
+/* Botão "Já paguei!" */
+.btn-ja-paguei {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 16px 20px 24px;
+  background: #25a244;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-ja-paguei:active { transform: scale(0.97); }
+.pix-corpo { padding-bottom: 10px; }
+
+
+/* ==============================================
+   MODAL DA NOTA DE COMPRA
+   Aparece após o cliente clicar em
+   "Após o pagamento clique aqui".
+   Estilo de cupom fiscal / recibo.
+================================================ */
+.overlay-nota {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay-nota.ativo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-nota {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 92%;
+  max-width: 360px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #fff;           /* Fundo branco — estilo cupom */
+  border-radius: 12px;
+  z-index: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.modal-nota.ativo {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Conteúdo interno da nota */
+.nota-conteudo {
+  padding: 24px 20px;
+  font-family: 'Courier New', monospace; /* Fonte monoespaçada — estilo cupom */
+  color: #111;
+}
+
+/* Cabeçalho com nome do bar */
+.nota-cabecalho {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.nota-logo {
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+.nota-estabelecimento {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.nota-subtitulo {
+  margin: 2px 0 8px;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+/* Data e horário */
+.nota-data-hora {
+  font-size: 0.8rem;
+  color: #444;
+  margin: 6px 0;
+  text-align: center;
+}
+
+/* Linha tracejada separadora — estilo cupom fiscal */
+.nota-linha-tracejada {
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 10px 0;
+}
+
+/* Lista de itens */
+.nota-itens {
+  margin: 8px 0;
+}
+.nota-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 4px 0;
+  font-size: 0.85rem;
+  gap: 8px;
+}
+.nota-item-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.nota-item-nome {
+  font-weight: bold;
+  color: #111;
+}
+.nota-item-qtd {
+  font-size: 0.75rem;
+  color: #666;
+}
+.nota-item-preco {
+  font-weight: bold;
+  white-space: nowrap;
+  color: #111;
+}
+
+/* Linha do total */
+.nota-total-linha {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 6px 0;
+  color: #000;
+}
+
+/* Alerta para ir ao caixa */
+.nota-alerta {
+  background: #fff8e1;
+  border: 1px dashed #f0a500;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: #7a4f00;
+  text-align: center;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+/* Mensagem de agradecimento */
+.nota-obrigado {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #555;
+  margin: 8px 0 16px;
+}
+
+/* Botão fechar a nota */
+.btn-fechar-nota {
+  width: 100%;
+  background: #1a1a1a;
+  color: #c0392b;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-fechar-nota:active { transform: scale(0.97); }
+
+
+/* ==============================================
+   ETAPA 2 — MODAL DE IDENTIFICAÇÃO
+================================================ */
+.overlay-identificacao {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 500; opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay-identificacao.ativo { opacity: 1; pointer-events: auto; }
+
+.modal-identificacao {
+  position: fixed;
+  bottom: -100%; left: 0; right: 0;
+  max-width: 500px; margin: 0 auto;
+  background: #1e1e1e;
+  border-radius: 20px 20px 0 0;
+  z-index: 600;
+  transition: bottom 0.4s ease;
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-identificacao.ativo { bottom: 0; }
+
+.identificacao-corpo { padding: 8px 20px 24px; }
+
+.identificacao-instrucao {
+  color: #ccc; font-size: 0.9rem;
+  margin: 0 0 16px; text-align: center;
+}
+
+.input-label {
+  display: block;
+  color: #aaa; font-size: 0.82rem;
+  margin-bottom: 6px; margin-top: 14px;
+}
+
+.input-campo {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-campo:focus { border-color: #c0392b; }
+.input-campo::placeholder { color: #666; }
+
+.identificacao-erro {
+  color: #e74c3c; font-size: 0.82rem;
+  margin-top: 10px; text-align: center;
+  min-height: 18px;
+}
+
+.btn-avancar {
+  width: 100%; margin-top: 20px;
+  background: #c0392b; color: #fff;
+  border: none; border-radius: 12px;
+  padding: 14px; font-size: 1rem;
+  font-weight: bold; cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-avancar:active { transform: scale(0.97); }
+
+
+/* ==============================================
+   ETAPA 5/6 — MODAL DE COMPROVANTE
+================================================ */
+.overlay-comprovante {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 700; opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.overlay-comprovante.ativo { opacity: 1; pointer-events: auto; }
+
+.modal-comprovante {
+  position: fixed;
+  bottom: -100%; left: 0; right: 0;
+  max-width: 500px; margin: 0 auto;
+  background: #1e1e1e;
+  border-radius: 20px 20px 0 0;
+  z-index: 800;
+  transition: bottom 0.4s ease;
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-comprovante.ativo { bottom: 0; }
+
+.comprovante-corpo { padding: 8px 20px 24px; }
+
+.comprovante-instrucao {
+  color: #ccc; font-size: 0.9rem;
+  margin: 0 0 16px; text-align: center;
+}
+
+/* Área de upload estilizada */
+.upload-area {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: #2a2a2a;
+  border: 2px dashed #555;
+  border-radius: 14px;
+  padding: 28px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.upload-area:active { border-color: #c0392b; }
+.upload-area input[type="file"] { display: none; }
+
+.upload-icone { font-size: 2.5rem; margin-bottom: 8px; }
+.upload-texto { color: #fff; font-size: 0.95rem; font-weight: bold; }
+.upload-subtexto { color: #777; font-size: 0.78rem; margin-top: 4px; }
+
+/* Preview da imagem */
+.preview-comprovante {
+  margin-top: 12px; text-align: center;
+}
+.preview-comprovante img {
+  width: 100%; max-height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+.btn-trocar-foto {
+  margin-top: 8px;
+  background: #333; color: #aaa;
+  border: none; border-radius: 8px;
+  padding: 8px 16px; font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.comprovante-erro {
+  color: #e74c3c; font-size: 0.82rem;
+  margin-top: 10px; text-align: center;
+  min-height: 18px;
+}
+
+.btn-enviar-pedido {
+  width: 100%; margin-top: 16px;
+  background: #25a244; color: #fff;
+  border: none; border-radius: 12px;
+  padding: 14px; font-size: 1rem;
+  font-weight: bold; cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-enviar-pedido:active { transform: scale(0.97); }
+
+
+/* ==============================================
+   ETAPA 9 — CONFIRMAÇÃO FINAL
+================================================ */
+.confirmacao-pedido-info {
+  padding: 8px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  color: #333;
+  line-height: 1.8;
+}
+.confirmacao-numero-pedido {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* Select de mesa — herda o estilo do input-campo */
+select.input-campo {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23aaa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+select.input-campo option {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+
+/* ==============================================
+   INSTRUÇÕES VISUAIS — MODAL COMPROVANTE
+================================================ */
+.instrucoes-box {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.instrucoes-titulo {
+  color: #c0392b;
+  font-size: 0.88rem;
+  font-weight: bold;
+  margin: 0 0 12px;
+}
+.instrucao-passo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.instrucao-passo:last-child { margin-bottom: 0; }
+
+.passo-numero {
+  background: #c0392b;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.passo-texto {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.passo-texto strong { color: #fff; }
+
+/* ==============================================
+   AVISO DO COMPROVANTE — TELA DO PIX
+================================================ */
+.aviso-comprovante {
+  background: #2a1a1a;
+  border: 1px solid #c0392b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 14px 20px 4px;
+  font-size: 0.85rem;
+  color: #ddd;
+  line-height: 1.6;
+  text-align: center;
+}
+.aviso-comprovante strong {
+  color: #fff;
+}
