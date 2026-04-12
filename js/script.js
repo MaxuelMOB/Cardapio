@@ -1,5 +1,5 @@
 /* ==============================================
-   ARQUIVO: java.js
+   ARQUIVO:js
    DESCRIÇÃO: Lógica interativa do Cardápio Digital
    do Colarinho Lounge Bar.
    Fluxo completo: Carrinho → Identificação →
@@ -342,7 +342,7 @@ function enviarPedidoNoWhatsApp() {
     `📎 *Comprovante anexado abaixo.*`;
 
   // ⚠️ Substitua SEUNUMERO pelo número real (ex: 5551999999999)
-  const numeroWhatsApp = '51996830150';
+  const numeroWhatsApp = '5551996830150';
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(urlWhatsApp, '_blank');
