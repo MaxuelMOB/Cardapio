@@ -11,7 +11,7 @@
 <body>
 
   <!-- IMAGEM BANNER -->
-  <img src="img/banner.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
+  <img src="/img/banner.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
 
   <!-- TOPO -->
   <h1 class="titulo">CARDÁPIO</h1>
@@ -115,7 +115,8 @@
     <!-- SEM ÁLCOOL -->
     <div class="card" data-categoria="sem-alcool">
       <h2>🥤 Sem Álcool</h2>
-      <div class="item" data-nome="Água" data-preco="5.00"><span>Água</span><span class="preco-item">R$ 5,00</span></div>
+      <div class="item" data-nome="Agua Sem Gas" data-preco="5.00"><span>Água Sem Gás</span><span class="preco-item">R$ 5,00</span></div>
+      <div class="item" data-nome="Agua Com Gas" data-preco="5.00"><span>Água Com Gás</span><span class="preco-item">R$ 5,00</span></div>
       <div class="item" data-nome="Refrigerante" data-preco="8.00"><span>Refrigerante</span><span class="preco-item">R$ 8,00</span></div>
       <div class="item" data-nome="Tônica" data-preco="8.00"><span>Tônica</span><span class="preco-item">R$ 8,00</span></div>
       <div class="item" data-nome="Suco Natural" data-preco="8.00"><span>Suco Natural</span><span class="preco-item">R$ 8,00</span></div>
@@ -289,7 +290,10 @@
 
         <!-- Aviso do comprovante -->
         <div class="aviso-comprovante">
-          📎 <strong>Atenção:</strong> após clicar no botão abaixo e enviar seu pedido pelo WhatsApp, <strong>não se esqueça de anexar o print do comprovante do Pix</strong> na mesma mensagem — sem ele seu pedido não será confirmado!
+          <span class="icone-aviso">📎</span>
+          <strong>Atenção:</strong> após enviar seu pedido pelo WhatsApp,
+          <strong>não se esqueça de anexar o print do comprovante do Pix</strong>
+          na mesma mensagem — sem ele seu pedido não será confirmado!
         </div>
 
         <button class="btn-ja-paguei" onclick="enviarPedidoNoWhatsApp()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
@@ -351,13 +355,15 @@
   <div id="popup" class="popup">
     <div class="popup-content">
       <span class="fechar" onclick="fecharAnuncio()">×</span>
-      <img src="img/popday.jpg" alt="Promoção do fim de semana">
+      <img src="/img/popday.jpg" alt="Promoção do fim de semana">
     </div>
   </div>
 
   <!-- Biblioteca para gerar QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="js/script.js"></script>
+
+   <script src="/js/script.js"></script>
+
 </body>
 
 </html>
