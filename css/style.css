@@ -1214,17 +1214,65 @@ select.input-campo option {
 /* ==============================================
    AVISO DO COMPROVANTE — TELA DO PIX
 ================================================ */
-.aviso-comprovante {
-  background: #2a1a1a;
-  border: 1px solid #c0392b;
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin: 14px 20px 4px;
-  font-size: 0.85rem;
-  color: #ddd;
-  line-height: 1.6;
-  text-align: center;
+/* ==============================================
+   ANIMAÇÕES DO AVISO DO COMPROVANTE
+   @keyframes define o "roteiro" da animação:
+   - piscarBorda: faz a borda e o brilho piscarem
+   - piscarTexto: faz o texto forte mudar de cor
+================================================ */
+
+/* Animação da borda e sombra piscando */
+@keyframes piscarBorda {
+  0%   { border-color: #c0392b; box-shadow: 0 0 8px #c0392b; }
+  50%  { border-color: #ff6b35; box-shadow: 0 0 20px #ff6b35, 0 0 40px #c0392b; }
+  100% { border-color: #c0392b; box-shadow: 0 0 8px #c0392b; }
 }
+
+/* Animação da cor do texto em negrito */
+@keyframes piscarTexto {
+  0%   { color: #fff; }
+  50%  { color: #ff6b35; }
+  100% { color: #fff; }
+}
+
+/* Animação do ícone de alerta girando levemente */
+@keyframes balancear {
+  0%   { transform: rotate(-8deg); }
+  50%  { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+/* ==============================================
+   ESTILO DO AVISO DO COMPROVANTE
+================================================ */
+.aviso-comprovante {
+  /* Fundo vermelho escuro */
+  background: #2a1a1a;
+
+  /* Borda mais grossa para chamar atenção */
+  border: 2px solid #c0392b;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 14px 20px 4px;
+  font-size: 0.88rem;
+  color: #ddd;
+  line-height: 1.8;
+  text-align: center;
+
+  /* Aplica a animação da borda — dura 1.5s e repete infinitamente */
+  animation: piscarBorda 1.5s ease-in-out infinite;
+}
+
+/* Ícone de alerta — balanceia para chamar atenção */
+.aviso-comprovante .icone-aviso {
+  display: inline-block;
+  font-size: 1.3rem;
+  animation: balancear 0.8s ease-in-out infinite;
+  margin-right: 4px;
+}
+
+/* Texto em negrito — pisca entre branco e laranja */
 .aviso-comprovante strong {
   color: #fff;
+  animation: piscarTexto 1.5s ease-in-out infinite;
 }
