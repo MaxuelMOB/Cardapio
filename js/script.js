@@ -1,8 +1,7 @@
 /* ==============================================
    ARQUIVO: navegacao.js
    DESCRIÇÃO: Funções de navegação entre categorias
-   do cardápio e controle do popup de promoção.
-   Também contém a inicialização da página.
+   do cardápio.
 
    Funções deste arquivo:
    - trocarCategoria()
@@ -10,19 +9,11 @@
    - Inicialização da página (window load)
    - Inicialização do popup
 ================================================ */
-
-
 // -----------------------------------------------
 // trocarCategoria(categoria, botaoClicado)
 // Chamada quando o cliente toca em um botão
 // de categoria (Drinks, Cervejas, Burgers...).
 // Esconde a categoria atual e mostra a nova.
-//
-// Parâmetros:
-//   categoria    → string com o nome da categoria
-//                  (ex: 'drinks', 'cervejas', 'burgers')
-//   botaoClicado → referência ao botão que foi tocado
-//                  usado para deixá-lo destacado em vermelho
 // -----------------------------------------------
 function trocarCategoria(categoria, botaoClicado) {
   // Esconde todos os cards com animação de saída
