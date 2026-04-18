@@ -640,14 +640,9 @@ function enviarPedidoNoWhatsApp() {
     `✅ Pagamento via Pix realizado.\n` +
     `📎 *Comprovante anexado abaixo.*`;
 
-<<<<<<< HEAD
   // ⚠️ Número do WhatsApp do atendente
   // Formato: código do país (55) + DDD + número, sem espaços
   const numeroWhatsApp = '51996830150';
-=======
-  // ⚠️ Substitua SEUNUMERO pelo número real (ex: 5551999999999)
-  const numeroWhatsApp = '5551996830150';
->>>>>>> 17248a4 (Atualização do projeto Colarinho Louge Bar)
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   // Abre o WhatsApp em uma nova aba com a mensagem já escrita
@@ -727,92 +722,3 @@ function fecharTelaDeConfirmacao() {
   // Atualiza a barra (vai desaparecer pois o carrinho está vazio)
   atualizarBarraDoCarrinho();
 }
-<<<<<<< HEAD
-=======
-
-
-/* ==============================================
-   BOTÕES + / − EM CADA ITEM DO CARDÁPIO
-================================================ */
-function criarBotoesDeQuantidade() {
-  document.querySelectorAll('.item[data-nome]').forEach(itemEl => {
-    const nome = itemEl.dataset.nome;
-    const preco = itemEl.dataset.preco;
-    const controles = document.createElement('div');
-    controles.className = 'item-controles';
-    controles.innerHTML = `
-      <button class="btn-menos" onclick="adicionarOuRemoverItem('${nome}', ${preco}, -1)" disabled>−</button>
-      <span class="item-qtd">0</span>
-      <button class="btn-mais" onclick="adicionarOuRemoverItem('${nome}', ${preco}, +1)">+</button>
-    `;
-    itemEl.appendChild(controles);
-  });
-
-  // Fritas bloqueadas ao iniciar
-  document.querySelectorAll('.item[data-nome="Adicional de fritas"] .btn-mais')
-    .forEach(btn => btn.disabled = true);
-}
-
-
-/* ==============================================
-   NAVEGAÇÃO POR CATEGORIAS
-================================================ */
-function trocarCategoria(categoria, botaoClicado) {
-  document.querySelectorAll('.card').forEach(card => {
-    card.classList.remove('show');
-    setTimeout(() => {
-      if (!card.classList.contains('show')) card.style.display = 'none';
-    }, 400);
-  });
-
-  document.querySelectorAll('.btn-categoria').forEach(btn => btn.classList.remove('ativo'));
-  botaoClicado.classList.add('ativo');
-  botaoClicado.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-
-  const cardAlvo = document.querySelector(`[data-categoria="${categoria}"]`);
-  if (cardAlvo) {
-    cardAlvo.style.display = 'block';
-    cardAlvo.getBoundingClientRect();
-    cardAlvo.classList.add('show');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-
-/* ==============================================
-   INICIALIZAÇÃO DA PÁGINA
-================================================ */
-window.addEventListener('load', () => {
-  criarBotoesDeQuantidade();
-
-  document.querySelectorAll('.card').forEach(card => {
-    card.style.display = 'none';
-    card.classList.remove('show');
-  });
-
-  const primeiro = document.querySelector('[data-categoria="drinks"]');
-  if (primeiro) {
-    primeiro.style.display = 'block';
-    primeiro.getBoundingClientRect();
-    primeiro.classList.add('show');
-  }
-});
-
-
-/* ==============================================
-   POPUP DE PROMOÇÃO
-================================================ */
-const popup = document.getElementById('popup');
-
-window.addEventListener('load', () => {
-  setTimeout(() => popup.classList.add('ativo'), 1000);
-});
-
-function fecharAnuncio() {
-  popup.classList.remove('ativo');
-}
-
-popup.addEventListener('click', function(e) {
-  if (e.target === this) fecharAnuncio();
-});
->>>>>>> 17248a4 (Atualização do projeto Colarinho Louge Bar)
