@@ -1,8 +1,4 @@
 /* ==============================================
-   ARQUIVO: navegacao.js
-   DESCRIÇÃO: Funções de navegação entre categorias
-   do cardápio.
-
    Funções deste arquivo:
    - trocarCategoria()
    - fecharAnuncio()
@@ -108,20 +104,17 @@ popup.addEventListener('click', function (e) {
   if (e.target === this) fecharAnuncio();
 });
 /* ==============================================
-   ARQUIVO: dados.js
+  
    DESCRIÇÃO: Variáveis globais que guardam as
    informações do pedido durante todo o fluxo.
 
-   ⚠️ Este arquivo DEVE ser carregado PRIMEIRO
-   no index.html, pois os outros arquivos
-   dependem dessas variáveis.
 ================================================ */
 
 
 // -----------------------------------------------
 // CARRINHO
 // Objeto que guarda os itens que o cliente escolheu.
-// Exemplo de como fica quando preenchido:
+//
 // carrinho = {
 //   "Caipira Vodka": { preco: 25.00, qtd: 2 },
 //   "Heineken":      { preco: 17.00, qtd: 1 }
@@ -387,7 +380,7 @@ function criarBotoesDeQuantidade() {
     .forEach(btn => btn.disabled = true);
 }
 /* ==============================================
-   ARQUIVO: pagamento.js
+  Pagamento
    DESCRIÇÃO: Todas as funções relacionadas ao
    fluxo de pagamento: identificação do cliente,
    QR Code Pix, envio pelo WhatsApp e confirmação.
@@ -408,7 +401,6 @@ function criarBotoesDeQuantidade() {
 
 // -----------------------------------------------
 // comecarPedido()
-// ETAPA 1 → 2
 // Chamada quando o cliente clica em
 // "Finalizar e Pagar no Pix" no carrinho.
 // Fecha o carrinho e abre a tela de identificação.
@@ -438,7 +430,6 @@ function fecharTelaDeDados() {
 
 // -----------------------------------------------
 // confirmarDadosEIrParaPix()
-// ETAPA 2 → 3 → 4
 // Valida os campos preenchidos pelo cliente,
 // salva os dados e avança para a tela do Pix.
 // -----------------------------------------------
@@ -461,7 +452,7 @@ function confirmarDadosEIrParaPix() {
 
   erro.textContent = '';
 
-  // ETAPA 3 — Salva os dados do cliente
+  // Salva os dados do cliente
   // Esses dados são usados na mensagem do WhatsApp e no comprovante final
   dadosCliente.nome = nome;
   dadosCliente.mesa = mesa;
@@ -473,7 +464,6 @@ function confirmarDadosEIrParaPix() {
 
 // -----------------------------------------------
 // abrirTelaDepagamentoPix()
-// ETAPA 4
 // Calcula o total do carrinho, gera o QR Code
 // com o valor exato e abre a tela de pagamento.
 // -----------------------------------------------
@@ -595,7 +585,6 @@ function gerarCodigoQrcodePix(chave, nome, cidade, valor) {
 
 // -----------------------------------------------
 // enviarPedidoNoWhatsApp()
-// ETAPAS 6, 7 e 8
 // Incrementa o número do pedido, monta a mensagem
 // completa e abre o WhatsApp com tudo preenchido.
 // -----------------------------------------------
@@ -642,7 +631,7 @@ function enviarPedidoNoWhatsApp() {
 
   // ⚠️ Número do WhatsApp do atendente
   // Formato: código do país (55) + DDD + número, sem espaços
-  const numeroWhatsApp = '51996830150';
+  const numeroWhatsApp = '5551996830150';
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   // Abre o WhatsApp em uma nova aba com a mensagem já escrita
