@@ -1,26 +1,12 @@
-/* ==============================================
-   ARQUIVO: style.css
-   DESCRIÇÃO: Estilo visual do Cardápio Digital
-   do Colarinho Lounge Bar.
-   Todas as cores, tamanhos, animações e layout
-   da página são definidos aqui.
-================================================ */
-
-
-/* ==============================================
-   RESET & BASE
-   Configurações globais que afetam TODA a página.
-================================================ */
-
 * {
   /* Faz com que padding e borda sejam incluídos
      no tamanho total do elemento. Evita que
      elementos "vazem" para fora do layout. */
   box-sizing: border-box;
 
-  /* Remove o brilho azul/cinza que aparece
+  /* Remove o brilho que aparece
      quando o usuário toca em elementos no celular
-     (Android especialmente). Deixa mais bonito. */
+    */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -31,30 +17,21 @@ body {
   /* Espaço interno nas laterais e embaixo */
   padding: 15px;
 
-  /* Zera o padding do topo pois a barra de
-     categorias já cuida desse espaço */
+  /* Zera o padding do topo */
   padding-top: 0;
 
   /* Cor de fundo escura — tema dark do app */
   background: #1a1a1a;
 
-  /* Cor padrão do texto — branco */
+  /* Cor padrão do texto branco */
   color: #fff;
 
-  /* Fonte principal. Segoe UI é moderna e
-     legível em telas de celular */
+  /* Fonte principal. */
   font-family: 'Segoe UI', sans-serif;
 
-  /* Tamanho base da fonte — 16px é o ideal
-     para leitura confortável no celular */
+  /* Tamanho base da fonte — 16px */
   font-size: 16px;
 }
-
-
-/* ==============================================
-   BANNER (imagem do topo)
-   A foto principal do bar que aparece no topo.
-================================================ */
 
 .imagem-banner {
   /* Garante que a imagem não flutue para o lado */
@@ -171,8 +148,8 @@ body {
   flex-shrink: 0;        /* Impede o botão de encolher no scroll horizontal */
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 
-  /* 44px é o tamanho mínimo recomendado pela Apple e Google
-     para área de toque no celular — evita erros de toque */
+  /* 44px
+   evita erros de toque */
   min-height: 44px;
 }
 
@@ -209,7 +186,6 @@ body {
 /* ==============================================
    CARDS DE CATEGORIA
    Cada seção do cardápio (Drinks, Cervejas, etc.)
-   é um card com fundo escuro arredondado.
 ================================================ */
 
 .card {
