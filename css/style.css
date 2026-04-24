@@ -1276,3 +1276,11 @@ select.input-campo option {
   color: #fff;
   animation: piscarTexto 1.5s ease-in-out infinite;
 }
+/* loading e erro do qrcode */
+.pix-loading, .pix-erro {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1rem;
+  color: #aaa;
+}
+.pix-erro { color: #e74c3c; }

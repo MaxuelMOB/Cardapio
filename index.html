@@ -10,14 +10,12 @@
 
 <body>
 
-  <!-- IMAGEM BANNER -->
-  <img src="/img/banner.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
+  <img src="img/banner.png" class="imagem-banner" alt="violão e cerveja com clima de pagode">
 
-  <!-- TOPO -->
   <h1 class="titulo">CARDÁPIO</h1>
   <p class="subtitulo">🍹 Música • Alegria • Diversão</p>
 
-  <!-- MENU DE CATEGORIAS — FIXO NO TOPO COM SCROLL HORIZONTAL -->
+  <!-- barra de categorias com scroll horizontal -->
   <div class="menu-categorias">
     <button class="btn-categoria ativo" onclick="trocarCategoria('drinks', this)">🍹 Drinks</button>
     <button class="btn-categoria" onclick="trocarCategoria('cervejas', this)">🍺 Cervejas</button>
@@ -67,7 +65,7 @@
       <div class="item" data-nome="Heineken" data-preco="17.00"><span>Heineken</span><span class="preco-item">R$ 17,00</span></div>
       <div class="item" data-nome="Skol Beats" data-preco="15.00"><span>Skol Beats</span><span class="preco-item">R$ 15,00</span></div>
       <div class="item" data-nome="Smirnoff Ice" data-preco="15.00"><span>Smirnoff Ice</span><span class="preco-item">R$ 15,00</span></div>
-      <div class="item" data-nome="Torre de Chopp" data-preco="99.00"><span>Torre de Chopp</span><span class="preco-item">R$ 99,00</span></div>
+      <div class="item" data-nome="Torre de Chopp" data-preco="99.00"><span>Torre de Chopp 2500ml</span><span class="preco-item">R$ 99,00</span></div>
       <div class="item" data-nome="Vinho Concha Y Toro" data-preco="70.00"><span>Vinho Concha Y Toro</span><span class="preco-item">R$ 70,00</span></div>
       <div class="item" data-nome="Espumante Salton" data-preco="79.00"><span>Espumante Salton</span><span class="preco-item">R$ 79,00</span></div>
       <div class="item" data-nome="Espumante Garibaldi" data-preco="79.00"><span>Espumante Garibaldi</span><span class="preco-item">R$ 79,00</span></div>
@@ -76,10 +74,14 @@
     <!-- COMBOS CERVEJAS -->
     <div class="card" data-categoria="combos-cervejas">
       <h2>🍻 Combos Cervejas</h2>
-      <div class="item" data-nome="Balde Corona (5)" data-preco="85.00"><span>Balde Corona (5)</span><span class="preco-item">R$ 85,00</span></div>
-      <div class="item" data-nome="Balde Heineken (5)" data-preco="80.00"><span>Balde Heineken (5)</span><span class="preco-item">R$ 80,00</span></div>
-      <div class="item" data-nome="Balde Amstel (5)" data-preco="75.00"><span>Balde Amstel (5)</span><span class="preco-item">R$ 75,00</span></div>
-      <div class="item" data-nome="Balde Skol Beats (5)" data-preco="85.00"><span>Balde Skol Beats (5)</span><span class="preco-item">R$ 85,00</span></div>
+      <div class="item" data-nome="Balde Corona" data-preco="85.00"><span>Balde Corona</span><span class="preco-item">R$ 85,00</span></div>
+      <div class="item-descricao">5 unidades</div>
+      <div class="item" data-nome="Balde Heineken" data-preco="80.00"><span>Balde Heineken</span><span class="preco-item">R$ 80,00</span></div>
+      <div class="item-descricao">5 unidades</div>
+      <div class="item" data-nome="Balde Amstel" data-preco="75.00"><span>Balde Amstel</span><span class="preco-item">R$ 75,00</span></div>
+      <div class="item-descricao">5 unidades</div>
+      <div class="item" data-nome="Balde Skol Beats" data-preco="85.00"><span>Balde Skol Beats</span><span class="preco-item">R$ 85,00</span></div>
+      <div class="item-descricao">5 unidades</div>
     </div>
 
     <!-- DOSES -->
@@ -115,6 +117,7 @@
     <!-- SEM ÁLCOOL -->
     <div class="card" data-categoria="sem-alcool">
       <h2>🥤 Sem Álcool</h2>
+      <!-- data-nome sem acento para evitar bug no JS -->
       <div class="item" data-nome="Agua Sem Gas" data-preco="5.00"><span>Água Sem Gás</span><span class="preco-item">R$ 5,00</span></div>
       <div class="item" data-nome="Agua Com Gas" data-preco="5.00"><span>Água Com Gás</span><span class="preco-item">R$ 5,00</span></div>
       <div class="item" data-nome="Refrigerante" data-preco="8.00"><span>Refrigerante</span><span class="preco-item">R$ 8,00</span></div>
@@ -174,7 +177,7 @@
 
   </div>
 
-  <!-- BARRA DO CARRINHO — aparece quando há itens -->
+  <!-- barra fixa no rodapé, aparece quando tem item no carrinho -->
   <div id="barra-carrinho" class="barra-carrinho">
     <div class="carrinho-info">
       <span id="carrinho-qtd">0 itens</span>
@@ -183,7 +186,7 @@
     <button class="btn-ver-carrinho" onclick="abrirTelaDoCarrinho()">🛒 Ver pedido</button>
   </div>
 
-  <!-- MODAL DO CARRINHO -->
+  <!-- modal do carrinho -->
   <div id="modal-carrinho" class="modal-carrinho">
     <div class="modal-conteudo">
       <div class="modal-topo">
@@ -196,14 +199,13 @@
           <span>Total</span>
           <span id="total-final">R$ 0,00</span>
         </div>
-        <!-- ETAPA 1: Botão que inicia o fluxo de pagamento -->
         <button class="btn-finalizar" onclick="comecarPedido()">💳 Finalizar e Pagar no Pix</button>
       </div>
     </div>
   </div>
   <div id="overlay-carrinho" class="overlay-carrinho" onclick="fecharTelaDoCarrinho()"></div>
 
-  <!-- ETAPA 2: MODAL DE IDENTIFICAÇÃO (Nome + Mesa) -->
+  <!-- modal de identificação: nome e mesa -->
   <div id="modal-identificacao" class="modal-identificacao">
     <div class="modal-conteudo">
       <div class="modal-topo">
@@ -212,24 +214,21 @@
       </div>
       <div class="identificacao-corpo">
         <p class="identificacao-instrucao">Antes de pagar, precisamos de algumas informações:</p>
-
         <label class="input-label">Seu nome completo</label>
-        <input type="text" id="input-nome-cliente" class="input-campo"
-          placeholder="Ex: João Silva" maxlength="50">
-
+        <input type="text" id="input-nome-cliente" class="input-campo" placeholder="Ex: João Silva" maxlength="50">
         <label class="input-label">Número da sua mesa</label>
         <select id="input-mesa" class="input-campo">
           <option value="">Selecione sua mesa...</option>
-          <option value="1">CAM 1</option>
-          <option value="2">CAM 2</option>
-          <option value="3">CAM 3</option>
-          <option value="4">CAM 4</option>
-          <option value="5">CAM 5</option>
-          <option value="6">CAM 6</option>
-          <option value="7">CAM 7</option>
-          <option value="8">CAM 8</option>
-          <option value="9">CAM 9</option>
-          <option value="10">CAM 10</option>
+          <option value="1">MESA 1</option>
+          <option value="2">MESA 2</option>
+          <option value="3">MESA 3</option>
+          <option value="4">MESA 4</option>
+          <option value="5">MESA 5</option>
+          <option value="6">MESA 6</option>
+          <option value="7">MESA 7</option>
+          <option value="8">MESA 8</option>
+          <option value="9">MESA 9</option>
+          <option value="10">MESA 10</option>
           <option value="11">MESA 11</option>
           <option value="12">MESA 12</option>
           <option value="13">MESA 13</option>
@@ -261,16 +260,14 @@
           <option value="39">TONEL 39</option>
           <option value="40">TONEL 40</option>
         </select>
-
         <div id="identificacao-erro" class="identificacao-erro"></div>
-
         <button class="btn-avancar" onclick="confirmarDadosEIrParaPix()">Avançar para pagamento →</button>
       </div>
     </div>
   </div>
   <div id="overlay-identificacao" class="overlay-identificacao" onclick="fecharTelaDeDados()"></div>
 
-  <!-- ETAPA 4: MODAL DO PIX -->
+  <!-- modal do pix com qrcode e aviso do comprovante -->
   <div id="modal-pix" class="modal-pix">
     <div class="modal-conteudo">
       <div class="modal-topo">
@@ -287,22 +284,19 @@
           <span class="pix-chave-texto">+55 (51) 99844-3038</span>
           <button class="btn-copiar" onclick="copiarChavePix()">📋 Copiar</button>
         </div>
-
-        <!-- Aviso do comprovante -->
         <div class="aviso-comprovante">
           <span class="icone-aviso">📎</span>
           <strong>Atenção:</strong> após enviar seu pedido pelo WhatsApp,
           <strong>não se esqueça de anexar o print do comprovante do Pix</strong>
           na mesma mensagem — sem ele seu pedido não será confirmado!
         </div>
-
         <button class="btn-ja-paguei" onclick="enviarPedidoNoWhatsApp()">📲 Já paguei! Enviar pedido pelo WhatsApp</button>
       </div>
     </div>
   </div>
   <div id="overlay-pix" class="overlay-pix" onclick="fecharTelaDePagamentoPix()"></div>
 
-  <!-- ETAPA 9: MODAL DE CONFIRMAÇÃO FINAL (comprovante do cliente) -->
+  <!-- comprovante final exibido para o cliente após o envio -->
   <div id="modal-confirmacao-final" class="modal-nota">
     <div class="nota-conteudo">
       <div class="nota-cabecalho">
@@ -310,60 +304,40 @@
         <h2 class="nota-estabelecimento">Pedido Enviado!</h2>
         <p class="nota-subtitulo">Sua solicitação foi recebida com sucesso</p>
       </div>
-
       <div class="nota-linha-tracejada"></div>
-
       <div class="confirmacao-pedido-info">
-        <div class="confirmacao-numero-pedido">
-          Nº do Pedido: <strong id="conf-numero-pedido">#001</strong>
-        </div>
-        <div class="confirmacao-cliente">
-          Cliente: <strong id="conf-nome-cliente"></strong>
-        </div>
-        <div class="confirmacao-mesa">
-          Mesa: <strong id="conf-mesa"></strong>
-        </div>
-        <div class="confirmacao-data">
-          <strong id="conf-data-hora"></strong>
-        </div>
+        <div class="confirmacao-numero-pedido">Nº do Pedido: <strong id="conf-numero-pedido">#001</strong></div>
+        <div class="confirmacao-cliente">Cliente: <strong id="conf-nome-cliente"></strong></div>
+        <div class="confirmacao-mesa">Mesa: <strong id="conf-mesa"></strong></div>
+        <div class="confirmacao-data"><strong id="conf-data-hora"></strong></div>
       </div>
-
       <div class="nota-linha-tracejada"></div>
       <div id="conf-itens" class="nota-itens"></div>
       <div class="nota-linha-tracejada"></div>
-
       <div class="nota-total-linha">
         <span>TOTAL</span>
         <span id="conf-total">R$ 0,00</span>
       </div>
-
       <div class="nota-linha-tracejada"></div>
-
       <div class="nota-alerta" style="background:#e8f5e9; border-color:#4caf50; color:#1b5e20;">
         🍺 Aguarde! Seu pedido será levado até sua mesa em breve!
       </div>
-
       <div class="nota-linha-tracejada"></div>
       <p class="nota-obrigado">Obrigado pela preferência! 🎶</p>
-
       <button class="btn-fechar-nota" onclick="fecharTelaDeConfirmacao()">Fechar</button>
     </div>
   </div>
   <div id="overlay-confirmacao-final" class="overlay-nota" onclick="fecharTelaDeConfirmacao()"></div>
 
-  <!-- POPUP PROMOÇÃO -->
+  <!-- popup de promoção do dia -->
   <div id="popup" class="popup">
     <div class="popup-content">
       <span class="fechar" onclick="fecharAnuncio()">×</span>
-      <img src="/img/popday.jpg" alt="Promoção do fim de semana">
+      <img src="img/popday.png" alt="Promoção do fim de semana">
     </div>
   </div>
 
-  <!-- Biblioteca para gerar QR Code -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-   <script src="/js/script.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
-
 </html>
