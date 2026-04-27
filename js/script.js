@@ -432,7 +432,7 @@ function enviarPedidoNoWhatsApp() {
     `✅ Pagamento via Pix realizado.\n` +
     `📎 *Comprovante anexado abaixo.*`;
 
-  const numeroWhatsApp = '51996830150';
+  const numeroWhatsApp = '5551996830150';
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(urlWhatsApp, '_blank');
